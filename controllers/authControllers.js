@@ -8,7 +8,7 @@ function signUpGet(req, res) {
 
 const signUpPost = [
     validateSignUp,
-    async (req, res, next) => {
+    (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).render("signUp", {
