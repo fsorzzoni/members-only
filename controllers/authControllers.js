@@ -1,43 +1,29 @@
-import { validationResult, matchedData } from "express-validator";
-import { signUpUser } from "../services/authServices.js";
 import { validateSignUp } from "../validations/authValidations.js";
+import { ensureNotAuthenticated, logInHandler, signUpHandler } from "../middlewares/authMiddleware.js";
 
-function signUpGet(req, res) {
-    return res.render("signUp");
-}
+const signUpGet = [
+    ensureNotAuthenticated,
+    (req, res) => {
+        return res.render("signUp");
+    }
+];
 
 const signUpPost = [
+    ensureNotAuthenticated,
     validateSignUp,
-    async (req, res, next) => {
-        const errors = validationResult(req);
-        if(!errors.isEmpty()) {
-            return res.status(400).render("signUp", {
-                user: { firstName: req.body.firstName, lastName: req.body.lastName, username: req.body.username },
-                errors: errors.array()
-            });
-        }
+    signUpHandler
+];
 
-        const { firstName, lastName, username, password } = matchedData(req);
-        
-        try {
-        await signUpUser(firstName, lastName, username, password);
-        } catch(error) {
-            if(error.code === "23505") {
-                return res.status(409).render("signUp", {
-                    user: { firstName, lastName, username },
-                    errors: [{ msg: "Username already exists."}]
-                });
-            }
-            return next(error);
-        }
-        return res.redirect("/");
+const logInGet = [
+    ensureNotAuthenticated,
+    (req, res) => {
+        return res.render("logIn");
     }
-]
+];
 
-async function logInGet(req, res) {
-
-}
-
-const logInPost = [];
+const logInPost = [
+    ensureNotAuthenticated,
+    logInHandler
+];
 
 export { signUpGet, signUpPost, logInGet, logInPost };
