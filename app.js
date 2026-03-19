@@ -11,6 +11,7 @@ import userRouter from "./routes/userRouter.js";
 import messageRouter from "./routes/messageRouter.js";
 import indexRouter from "./routes/indexRouter.js";
 import authRouter from "./routes/authRouter.js";
+import membershipRouter from "./routes/membershipRouter.js";
 
 const app = express();
 const PgSession = connectPgSimple(session);
@@ -51,6 +52,7 @@ app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/messages", messageRouter);
 app.use("/auth", authRouter);
+app.use("/membership", membershipRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);

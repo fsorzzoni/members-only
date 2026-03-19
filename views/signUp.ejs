@@ -2,18 +2,22 @@
     <body>
         <main>
             <section>
-                <form action="/users/sign-up" method="POST">
+                <%- include("partials/errors.ejs", { errors }) %>
+            </section>
+
+            <section>
+                <form action="/auth/sign-up" method="POST">
                     <label>
                         First Name:
-                        <input type="text" name="firstName" required>
+                        <input type="text" name="firstName" value="<%= user?.firstName || "" %>" required>
                     </label>
                     <label>
                         Last Name:
-                        <input type="text" name="lastName" required>
+                        <input type="text" name="lastName" value="<%= user?.lastName || "" %>" required>
                     </label>
                     <label>
                         Username:
-                        <input type="text" name="username" required>
+                        <input type="text" name="username" value="<%= user?.username || "" %>" required>
                     </label>
                     <label>
                         Password:
@@ -31,9 +35,7 @@
             <section>
                 <div>
                     <p>Already have an account?</p>
-                    <a href="/users/log-in">
-                        <button type="button">Log In</button>
-                    </a>
+                    <a href="/users/log-in" class="btn">Log In</a>
                 </div>
             </section>
         </main>
