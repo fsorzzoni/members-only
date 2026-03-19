@@ -8,7 +8,7 @@ function signUpGet(req, res) {
 
 const signUpPost = [
     validateSignUp,
-    (req, res, next) => {
+    async (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(400).render("signUp", {
@@ -20,10 +20,7 @@ const signUpPost = [
         const { firstName, lastName, username, password } = matchedData(req);
         
         try {
-        signUpUser(firstName, lastName, username, password);
-
-        return res.redirect("/");
-
+        await signUpUser(firstName, lastName, username, password);
         } catch(error) {
             if(error.code === "23505") {
                 return res.status(409).render("signUp", {
@@ -33,6 +30,7 @@ const signUpPost = [
             }
             return next(error);
         }
+        return res.redirect("/");
     }
 ]
 

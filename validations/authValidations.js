@@ -25,8 +25,4 @@ const validateSignUp = [
     })
 ];
 
-const validateLogIn = [
-
-];
-
 export { validateSignUp, validateLogIn };

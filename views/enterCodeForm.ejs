@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <main>
+            <section>
+                <%- include("partials/errors.ejs", { errors }) %>
+            </section>
+
+            <section>
+                <form action="/membership/join" method="POST">
+                    <label>
+                        Code:
+                        <input type="text" name="code">" required>
+                    </label>
+                    
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

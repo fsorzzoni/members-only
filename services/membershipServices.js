@@ -11,9 +11,9 @@ function isMemberCode(code) {
 }
 
 async function editUserMembership(id, isAdmin, isMember) {
-    const user = editUser(id, { isAdmin, isMember });
+    const user = await editUser(id, { isAdmin, isMember });
 
-    if(user === null) throw new NotFoundError("User ID: " + id + "does not exist.");
+    if(user === null) throw new NotFoundError("User ID: " + id + " does not exist.");
 }
 
 export { isAdminCode, isMemberCode, editUserMembership };

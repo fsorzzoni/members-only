@@ -20,7 +20,7 @@ async function getUserById(id) {
 }
 
 async function getUserByUsername(username) {
-    const query = "SELECT * FROM users WHERE usename = $1;";
+    const query = "SELECT * FROM users WHERE username = $1;";
 
     const values = [username];
 

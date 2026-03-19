@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { joinClubGet, joinClubPost } from "../controllers/membershipController.js";
 
 const membershipRouter = Router();
 
