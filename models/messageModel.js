@@ -9,12 +9,13 @@ async function getMessages() {
     return rows;
 }
 
-async function getMembersMessages() {
+async function getMembersMessages(isMember) {
+    const fields = isMember ? "u.username, m.timestamp" : "NULL AS username, NULL as timestamp";
     const query = `
-    SELECT user.id, user.username, message.title, message.text, message.timestamp 
-    FROM users user JOIN messages message ON (user.id = message.userId) 
-    WHERE user.isMember = true
-    ORDER BY message.timestamp DESC;
+    SELECT ${fields}, m.title, m.text, m.id
+    FROM users u JOIN messages m ON (u.id = m.userId) 
+    WHERE u.isMember = true
+    ORDER BY m.timestamp DESC;
     `;
 
     const { rows } = await pool.query(query);
@@ -29,7 +30,7 @@ async function getMessageById(id) {
 
     const { rows } = await pool.query(query, values);
 
-    return rows[0] || null;
+    return rows[0] ?? null;
 }
 
 async function insertMessage({ title, text, timestamp, userId }) {
@@ -51,7 +52,7 @@ async function deleteMessage(id) {
 
     const { rows } = await pool.query(query, values);
 
-    return rows[0] || null;
+    return rows[0] ?? null;
 }
 
 async function deleteUserMessages(userId) {
@@ -95,7 +96,7 @@ async function editMessage(id, { title, text, timestamp }) {
 
     const { rows } = await pool.query(query, values);
 
-    return rows[0] || null;
+    return rows[0] ?? null;
 }
 
 export { getMessages, getMembersMessages, getMessageById, insertMessage, deleteMessage, deleteUserMessages, editMessage };

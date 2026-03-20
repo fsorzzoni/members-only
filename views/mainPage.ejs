@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <header>
+            <section>
+                    <% if(locals.user !== null) { %>
+                        <a href="/messages/new" class="btn">New Message</a>
+                    <% } %>
+            </section>
+        </header>
+        <main>
+            <section>
+                <% messages.forEach(message => { %>
+                    <%- include("partials/message.ejs", { message }) %>
+                <% }) %>
+            </section>
+        </main>
+    </body>
+</html>

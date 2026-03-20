@@ -20,6 +20,7 @@ async function joinCodeHandler(req, res, next) {
     }
 
     try {
+        // req.user.id garantizado por ensureAuthenticated
         await editUserMembership(req.user.id, isAdmin, isMember);
     } catch(error) {
         return next(error);

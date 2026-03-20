@@ -1,17 +1,25 @@
 import { validationResult, matchedData } from "express-validator";
 import { signUpUser } from "../services/authServices";
 import passport from "passport";
+import ForbiddenError from "../errors/ForbiddenError.js";
 
 function ensureNotAuthenticated(req, res, next) {
-    if(req.user !== null) {
+    if(req.isAuthenticated()) {
         return res.redirect("/");
     }
     return next();
 }
 
 function ensureAuthenticated(req, res, next) {
-    if(req.user === null) {
+    if(!req.isAuthenticated()) {
         return res.redirect("/auth/log-in");
+    }
+    return next();
+}
+
+function ensureIsAdmin(req, res, next) {
+    if(!req.user.isAdmin) {
+        return next(new ForbiddenError("User ID: " + req.user.id + " is not an admin."));
     }
     return next();
 }
@@ -69,4 +77,4 @@ function logInHandler(req, res, next) {
     })(req, res, next);
 }
 
-export { ensureNotAuthenticated, ensureAuthenticated, signUpHandler, logInHandler };
+export { ensureNotAuthenticated, ensureAuthenticated, ensureIsAdmin, signUpHandler, logInHandler };

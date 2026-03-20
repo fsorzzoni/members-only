@@ -16,7 +16,7 @@ async function getUserById(id) {
 
     const { rows } = await pool.query(query, values);
 
-    return rows[0] || null;
+    return rows[0] ?? null;
 }
 
 async function getUserByUsername(username) {
@@ -26,7 +26,7 @@ async function getUserByUsername(username) {
 
     const { rows } = await pool.query(query, values);
 
-    return rows[0] || null;
+    return rows[0] ?? null;
 }
 
 async function insertUser({ firstName, lastName, username, password, isMember, isAdmin }) {
@@ -48,7 +48,7 @@ async function deleteUser(id) {
 
     const { rows } = await pool.query(query, values);
 
-    return rows[0] || null;
+    return rows[0] ?? null;
 }
 
 async function editUser(id, { firstName, lastName, username, password, isMember, isAdmin }) {
@@ -100,7 +100,7 @@ async function editUser(id, { firstName, lastName, username, password, isMember,
     
         const { rows } = await pool.query(query, values);
     
-        return rows[0] || null;
+        return rows[0] ?? null;
 }
 
 export { getUsers, getUserById, getUserByUsername, insertUser, deleteUser, editUser };

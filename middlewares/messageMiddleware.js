@@ -1,5 +1,5 @@
 import { validationResult, matchedData } from "express-validator";
-import { newMessage } from "../services/messageServices.js";
+import { deleteMessage, newMessage } from "../services/messageServices.js";
 
 async function newMessageHandler(req, res, next) {
     const errors = validationResult(req);
@@ -21,4 +21,16 @@ async function newMessageHandler(req, res, next) {
     return res.redirect("/");
 }
 
-export { newMessageHandler };
+async function deleteMessageHandler(req, res, next) {
+    const messageId = req.params.messageId;
+
+    try {
+        await deleteMessage(messageId);
+    } catch(error) {
+        return next(error);
+    }
+
+    return res.redirect("/");
+}
+
+export { newMessageHandler, deleteMessageHandler };

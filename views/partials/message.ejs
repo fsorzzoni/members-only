@@ -1,0 +1,14 @@
+<div>
+    <h2><%= message.title %></h2>
+
+    <% if(message.username !== null) { %>
+        <p>User: <%= message.username %></p>
+        <p>Date: <%= message.timestamp %></p>
+    <% } %>
+
+    <textarea readonly><%= message.text %></textarea>
+
+    <% if(locals.user?.isAdmin ?? false) { %>
+        <a href="/messages/<%= message.id %>/delete" class="btn">Delete Message</a>
+    <% } %>
+</div>

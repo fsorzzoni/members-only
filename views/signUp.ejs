@@ -9,15 +9,15 @@
                 <form action="/auth/sign-up" method="POST">
                     <label>
                         First Name:
-                        <input type="text" name="firstName" value="<%= user?.firstName || "" %>" required>
+                        <input type="text" name="firstName" value="<%= user?.firstName ?? "" %>" required>
                     </label>
                     <label>
                         Last Name:
-                        <input type="text" name="lastName" value="<%= user?.lastName || "" %>" required>
+                        <input type="text" name="lastName" value="<%= user?.lastName ?? "" %>" required>
                     </label>
                     <label>
                         Username:
-                        <input type="text" name="username" value="<%= user?.username || "" %>" required>
+                        <input type="text" name="username" value="<%= user?.username ?? "" %>" required>
                     </label>
                     <label>
                         Password:

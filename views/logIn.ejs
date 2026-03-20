@@ -9,7 +9,7 @@
                 <form action="/auth/log-in" method="POST">
                     <label>
                         Username:
-                        <input type="text" name="username" value="<%= username || "" %>" required>
+                        <input type="text" name="username" value="<%= username ?? "" %>" required>
                     </label>
                     <label>
                         Password:

@@ -1,6 +1,6 @@
-import { ensureAuthenticated } from "../middlewares/authMiddleware.js";
+import { ensureAuthenticated, ensureIsAdmin } from "../middlewares/authMiddleware.js";
 import { validateMessage } from "../validations/messageValidations.js";
-import { newMessageHandler } from "../middlewares/messageMiddleware.js";
+import { deleteMessageHandler, newMessageHandler } from "../middlewares/messageMiddleware.js";
 
 const newMessageGet = [
     ensureAuthenticated,
@@ -15,4 +15,10 @@ const newMessagePost = [
     newMessageHandler
 ];
 
-export { newMessageGet, newMessagePost };
+const deleteMessageGet = [
+    ensureAuthenticated,
+    ensureIsAdmin,
+    deleteMessageHandler
+];
+
+export { newMessageGet, newMessagePost, deleteMessageGet };
