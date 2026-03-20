@@ -1,10 +1,18 @@
-import { body, validationResult, matchedData } from "express-validator";
+import { ensureAuthenticated } from "../middlewares/authMiddleware.js";
+import { validateMessage } from "../validations/messageValidations.js";
+import { newMessageHandler } from "../middlewares/messageMiddleware.js";
 
-const validateMessage = [
-    body("title").isLength({ min: 1, max: 60 }).withMessage("Title must be between 1 and 60 characters."),
-    body("text").isLength({ min: 1, max: 300 }).withMessage("Text must be between 1 and 300 characters.")
+const newMessageGet = [
+    ensureAuthenticated,
+    (req, res) => {
+        return res.render("newMessageForm");
+    }
 ];
 
-async function messagePostPost(req, res) {
+const newMessagePost = [
+    ensureAuthenticated,
+    validateMessage,
+    newMessageHandler
+];
 
-}
+export { newMessageGet, newMessagePost };

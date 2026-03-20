@@ -20,7 +20,7 @@ async function joinCodeHandler(req, res, next) {
     }
 
     try {
-        await editUserMembership(id, isAdmin, isMember);
+        await editUserMembership(req.user.id, isAdmin, isMember);
     } catch(error) {
         return next(error);
     }
