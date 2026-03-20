@@ -2,14 +2,14 @@
     <body>
         <main>
             <section>
-                <%- include("partials/errors.ejs", { errors || [] }) %>
+                <%- include("partials/errors.ejs", { errors ?? [] }) %>
             </section>
 
             <section>
                 <form action="/auth/log-in" method="POST">
                     <label>
                         Username:
-                        <input type="text" name="username" value="<%= username || "" %>" required>
+                        <input type="text" name="username" value="<%= username ?? "" %>" required>
                     </label>
                     <label>
                         Password:
