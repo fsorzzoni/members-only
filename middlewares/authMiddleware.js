@@ -1,5 +1,5 @@
 import { validationResult, matchedData } from "express-validator";
-import { signUpUser } from "../services/authServices";
+import { signUpUser } from "../services/authServices.js";
 import passport from "passport";
 import ForbiddenError from "../errors/ForbiddenError.js";
 

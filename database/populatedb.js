@@ -3,7 +3,10 @@ import { Client } from "pg";
 async function main() {
     console.log("seeding...");
     const client = new Client({
-        connectionString: process.argv[2]
+        connectionString: process.argv[2],
+        ssl: {
+            rejectUnauthorized: false
+        }
     });
     await client.connect();
 
