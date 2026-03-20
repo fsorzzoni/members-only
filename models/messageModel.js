@@ -14,7 +14,7 @@ async function getMembersMessages(isMember) {
     const query = `
     SELECT ${fields}, m.title, m.text, m.id
     FROM users u JOIN messages m ON (u.id = m.user_id) 
-    WHERE u.isMember = true
+    WHERE u.is_member = true
     ORDER BY m.timestamp DESC;
     `;
 
