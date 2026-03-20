@@ -2,18 +2,18 @@
     <body>
         <main>
             <section>
-                <%- include("partials/errors.ejs", { errors ?? [] }) %>
+                <%- include("partials/errors.ejs", { errors || [] }) %>
             </section>
 
             <section>
                 <form action="/messages/new" method="POST">
                     <label>
                         Title:
-                        <input type="text" name="title" value="<%= message?.title ?? "" %>" required>
+                        <input type="text" name="title" value="<%= message?.title || "" %>" required>
                     </label>
                     <label>
                         Text:
-                        <input type="text" name="text" value="<%= message?.text ?? "" %>" required>
+                        <input type="text" name="text" value="<%= message?.text || "" %>" required>
                     </label>
 
                     <button type="submit">Post Message</button>
