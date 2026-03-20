@@ -8,7 +8,7 @@
 
     <textarea readonly><%= message.text %></textarea>
 
-    <% if(locals.user?.isAdmin ?? false) { %>
+    <% if(locals.user?.is_admin ?? false) { %>
         <a href="/messages/<%= message.id %>/delete" class="btn">Delete Message</a>
     <% } %>
 </div>
