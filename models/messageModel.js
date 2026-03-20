@@ -98,4 +98,4 @@ async function editMessage(id, { title, text, timestamp }) {
     return rows[0] || null;
 }
 
-export { getMessages, getMessageById, insertMessage, deleteMessage, deleteUserMessages, editMessage };
+export { getMessages, getMembersMessages, getMessageById, insertMessage, deleteMessage, deleteUserMessages, editMessage };

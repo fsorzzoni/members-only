@@ -1,10 +1,7 @@
-import { ensureAuthenticated } from "../middlewares/authMiddleware.js";
+import { mainPageHandler } from "../middlewares/indexMiddleware.js";
 
 const mainPageGet = [
-    ensureAuthenticated,
-    (req, res) => {
-        return res.render("mainPage");
-    }
+    mainPageHandler
 ];
 
 export { mainPageGet };
