@@ -4,7 +4,10 @@ import { ensureNotAuthenticated, logInHandler, signUpHandler } from "../middlewa
 const signUpGet = [
     ensureNotAuthenticated,
     (req, res) => {
-        return res.render("signUp");
+        return res.render("signUp", {
+            errors: [],
+            user: null
+        });
     }
 ];
 
@@ -17,7 +20,10 @@ const signUpPost = [
 const logInGet = [
     ensureNotAuthenticated,
     (req, res) => {
-        return res.render("logIn");
+        return res.render("logIn", {
+            username: null,
+            errors: []
+        });
     }
 ];
 

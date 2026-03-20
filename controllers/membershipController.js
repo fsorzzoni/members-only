@@ -5,7 +5,9 @@ import { ensureAuthenticated } from "../middlewares/authMiddleware.js";
 const joinClubGet = [
     ensureAuthenticated,
     (req, res) => {
-        return res.render("enterCodeForm");
+        return res.render("enterCodeForm", {
+            errors: []
+        });
     }
 ];
 

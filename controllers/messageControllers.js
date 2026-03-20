@@ -5,7 +5,10 @@ import { deleteMessageHandler, newMessageHandler } from "../middlewares/messageM
 const newMessageGet = [
     ensureAuthenticated,
     (req, res) => {
-        return res.render("newMessageForm");
+        return res.render("newMessageForm", {
+            message: null,
+            errors: []
+        });
     }
 ];
 
