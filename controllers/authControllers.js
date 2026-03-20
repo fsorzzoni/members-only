@@ -1,5 +1,5 @@
 import { validateSignUp } from "../validations/authValidations.js";
-import { ensureNotAuthenticated, logInHandler, signUpHandler } from "../middlewares/authMiddleware.js";
+import { ensureAuthenticated, ensureNotAuthenticated, logInHandler, logOutHandler, signUpHandler } from "../middlewares/authMiddleware.js";
 
 const signUpGet = [
     ensureNotAuthenticated,
@@ -32,4 +32,9 @@ const logInPost = [
     logInHandler
 ];
 
-export { signUpGet, signUpPost, logInGet, logInPost };
+const logOutGet = [
+    ensureAuthenticated,
+    logOutHandler
+];
+
+export { signUpGet, signUpPost, logInGet, logInPost, logOutGet };

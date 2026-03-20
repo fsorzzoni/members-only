@@ -11,8 +11,8 @@ async function joinCodeHandler(req, res, next) {
 
     const { code } = matchedData(req);
 
-    const isAdmin = isAdminCode(code);
-    const isMember = isMemberCode(code);
+    const isAdmin = isAdminCode(code) || req.user.isAdmin;
+    const isMember = isMemberCode(code) || isAdmin || req.user.isMember;
     if(!isAdmin && !isMember) {
         return res.status(422).render("enterCodeForm", {
             errors: [{ msg: "Incorrect code."}]
