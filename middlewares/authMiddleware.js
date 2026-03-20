@@ -18,7 +18,7 @@ function ensureAuthenticated(req, res, next) {
 }
 
 function ensureIsAdmin(req, res, next) {
-    if(!req.user.isAdmin) {
+    if(!req.user.is_admin) {
         return next(new ForbiddenError("User ID: " + req.user.id + " is not an admin."));
     }
     return next();
