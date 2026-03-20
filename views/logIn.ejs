@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <main>
+            <section>
+                <%- include("partials/errors.ejs", { errors }) %>
+            </section>
+
+            <section>
+                <form action="/auth/log-in" method="POST">
+                    <label>
+                        Username:
+                        <input type="text" name="username" value="<%= username || "" %>" required>
+                    </label>
+                    <label>
+                        Password:
+                        <input type="password" name="password" required>
+                    </label>
+
+                    <button type="submit">Log In</button>
+                </form>
+            </section>
+
+            <section>
+                <div>
+                    <p>Don't have an account?</p>
+                    <a href="/auth/sign-up" class="btn">Sign Up</a>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
