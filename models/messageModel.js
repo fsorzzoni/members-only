@@ -9,6 +9,19 @@ async function getMessages() {
     return rows;
 }
 
+async function getMembersMessages() {
+    const query = `
+    SELECT user.id, user.username, message.title, message.text, message.timestamp 
+    FROM users user JOIN messages message ON (user.id = message.userId) 
+    WHERE user.isMember = true
+    ORDER BY message.timestamp DESC;
+    `;
+
+    const { rows } = await pool.query(query);
+
+    return rows;
+}
+
 async function getMessageById(id) {
     const query = "SELECT * FROM messages WHERE id = $1;";
 
